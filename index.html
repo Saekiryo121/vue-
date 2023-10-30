@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <h1>バイトシフト表生成</h1>
+            <label for="totalBaito">バイトの人数:</label>
+            <input type="number" id="totalBaito" v-model="totalBaito">
+            <br>
+            <label for="daysPerWeek">出勤日数:</label>
+            <input type="number" id="daysPerWeek" v-model="daysPerWeek">
+            <br>
+            <label for="shiftSize">一回の出勤人数:</label>
+            <input type="number" id="shiftSize" v-model="shiftSize">
+            <br>
+            <button @click="generateShift">シフト表を生成</button>
+            <div v-if="shiftGenerated">
+                <h2>シフト表</h2>
+                <table>
+                    <tr v-for="(shift, day) in shiftSchedule" :key="day">
+                        <td>{{ day }}曜日</td>
+                        <td v-for="baito in shift">{{ baito }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.37/dist/vue.global.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
